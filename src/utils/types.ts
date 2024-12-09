@@ -25,6 +25,22 @@ export interface downloadEpsResult {
   }>;
 }
 
+export interface infoAnimeResult {
+  title: string;
+  titleJp: string;
+  studio: string;
+  producer: string;
+  score: string;
+  type: string;
+  status: string;
+  totalEpisode: string;
+  release: string;
+  duration: string;
+  genre: string;
+  synopsis: string;
+  cover: string;
+}
+
 export interface downloadAllResult extends downloadEpsResult {
   title: string;
 }

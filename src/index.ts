@@ -4,4 +4,5 @@ export {
   downloadEpisode,
   ongoing,
   search,
+  infoAnime
 } from "./lib";

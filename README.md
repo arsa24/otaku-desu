@@ -30,7 +30,7 @@ Fetches the list of ongoing anime.
 #### Example:
 
 ```typescript
-import { ongoing } from "website-scraper";
+import { ongoing } from "otaku-desu";
 
 const result = await ongoing();
 console.log(result);
@@ -57,7 +57,7 @@ Searches for anime based on a keyword.
 #### Example:
 
 ```typescript
-import { search } from "website-scraper";
+import { search } from "otaku-desu";
 
 const result = await search("naruto");
 console.log(result);
@@ -86,7 +86,7 @@ Downloads a specific anime episode.
 #### Example:
 
 ```typescript
-import { downloadEpisode } from "website-scraper";
+import { downloadEpisode } from "otaku-desu";
 
 const result = await downloadEpisode("https://example.com/episode1", "480p");
 console.log(result);
@@ -110,7 +110,7 @@ Downloads all episodes from a series page.
 #### Example:
 
 ```typescript
-import { downloadAllEpisode } from "website-scraper";
+import { downloadAllEpisode } from "otaku-desu";
 
 const result = await downloadAllEpisode("https://example.com/series", "720p");
 console.log(result);
