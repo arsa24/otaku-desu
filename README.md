@@ -43,7 +43,7 @@ console.log(result);
 
 Searches for anime based on a keyword.
 
-#### Parameters:
+#### Parameter:
 
 - `resolution` (optional): A `resolution` type (`"360p" | "480p" | "720p"`) specifying the video resolution. Defaults to `"720p"`.
 
@@ -61,6 +61,43 @@ Searches for anime based on a keyword.
 import { search } from "otaku-desu";
 
 const result = await search("naruto");
+console.log(result);
+```
+
+---
+
+### `infoAnime(url: string)`
+
+Get some information from url
+
+#### Parameter
+
+- `url`: A `string` representing the URL of the series page.
+
+#### Returns
+
+- `title`: string;
+- `titleJp`: string;
+- `studio`: string;
+- `producer`: string;
+- `score`: string;
+- `type`: string;
+- `status`: string;
+- `totalEpisode`: string;
+- `release`: string;
+- `duration`: string;
+- `genre`: string;
+- `synopsis`: string;
+- `cover`: string;
+
+#### Example
+
+```typescript
+import { infoAnime } from "otaku-desu";
+
+const result = await downloadEpisode(
+  "https://otakudesu.cloud/anime/blue-archive-sub-indo/"
+);
 console.log(result);
 ```
 
