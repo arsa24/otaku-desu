@@ -11,7 +11,7 @@ export const downloadEpisode = async (
   let result: downloadEpsResult = {
     title,
     resolution,
-    download: [],
+    dl: [],
   };
   $("div.download ul li").each((i, e) => {
     const reso = $(e).children("strong").text().trim();
@@ -23,7 +23,7 @@ export const downloadEpisode = async (
           const provider = $(element).text().trim();
           const link = $(element).attr("href");
           if (link) {
-            result.download.push({ provider, extension, url: link });
+            result.dl.push({ provider, extension, url: link });
           }
         });
     }

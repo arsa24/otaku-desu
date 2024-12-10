@@ -12,22 +12,28 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.search = void 0;
 const constant_1 = require("../utils/constant");
 const fetch_1 = require("../utils/fetch");
-const search = (search) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = [];
+const downloadAll_1 = require("./downloadAll");
+const infoAnime_1 = require("./infoAnime");
+const search = (search, resolution) => __awaiter(void 0, void 0, void 0, function* () {
     const $ = yield (0, fetch_1.fetch)(constant_1.URL, {
         params: {
             s: search,
             post_type: "anime",
         },
     });
-    $('li[style="list-style:none;"]').each((i, e) => {
-        const img = $(e).find("img").attr("src");
-        const title = $(e).find("h2 > a").text().trim();
-        const urlAnime = $(e).find("h2 > a").attr("href");
-        if (title && urlAnime && img) {
-            result.push({ number: i, title, url: urlAnime, cover: img });
+    const elements = $('li[style="list-style:none;"]');
+    const promises = elements.toArray().map((element, i) => __awaiter(void 0, void 0, void 0, function* () {
+        const urlAnime = $(element).find("h2 > a").attr("href");
+        let info = null;
+        let download = null;
+        if (urlAnime) {
+            info = yield (0, infoAnime_1.infoAnime)(urlAnime);
+            download = yield (0, downloadAll_1.downloadAllEpisode)(urlAnime, resolution);
+            return Object.assign(Object.assign({ number: i }, info), { download });
         }
-    });
+        return undefined;
+    }));
+    const result = (yield Promise.all(promises)).filter(Boolean);
     return result;
 });
 exports.search = search;

@@ -17,7 +17,7 @@ const downloadEpisode = (url_1, ...args_1) => __awaiter(void 0, [url_1, ...args_
     let result = {
         title,
         resolution,
-        download: [],
+        dl: [],
     };
     $("div.download ul li").each((i, e) => {
         const reso = $(e).children("strong").text().trim();
@@ -29,7 +29,7 @@ const downloadEpisode = (url_1, ...args_1) => __awaiter(void 0, [url_1, ...args_
                 const provider = $(element).text().trim();
                 const link = $(element).attr("href");
                 if (link) {
-                    result.download.push({ provider, extension, url: link });
+                    result.dl.push({ provider, extension, url: link });
                 }
             });
         }

@@ -31,9 +31,7 @@ const infoAnime = (url) => __awaiter(void 0, void 0, void 0, function* () {
     };
     $("div.infozin div.infozingle p").each((i, e) => {
         const text = $(e).text().trim();
-        const [category, value] = text
-            .split(":")
-            .map((part) => part.trim());
+        const [category, value] = text.split(":").map((part) => part.trim());
         if (category && value) {
             switch (category) {
                 case "Judul":
@@ -80,7 +78,7 @@ const infoAnime = (url) => __awaiter(void 0, void 0, void 0, function* () {
     });
     const cov = $("div.fotoanime img").attr("src");
     if (cov) {
-        result.cover;
+        result.cover = cov;
     }
     result.synopsis = sinopc.join("\n");
     return result;

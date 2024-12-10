@@ -19,11 +19,10 @@ export const infoAnime = async (url: string): Promise<infoAnimeResult> => {
     synopsis: "",
     cover: "",
   };
+
   $("div.infozin div.infozingle p").each((i: number, e: any) => {
     const text = $(e).text().trim();
-    const [category, value]: any = text
-      .split(":")
-      .map((part: any) => part.trim());
+    const [category, value] = text.split(":").map((part) => part.trim());
     if (category && value) {
       switch (category) {
         case "Judul":
@@ -69,10 +68,12 @@ export const infoAnime = async (url: string): Promise<infoAnimeResult> => {
     let synopsis = $(e).text().trim();
     sinopc.push(synopsis);
   });
+
   const cov = $("div.fotoanime img").attr("src");
   if (cov) {
-    result.cover;
+    result.cover = cov;
   }
   result.synopsis = sinopc.join("\n");
+
   return result;
 };

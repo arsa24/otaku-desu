@@ -1,8 +1,19 @@
 export interface searchResult {
   number: number;
   title: string;
-  url: string;
+  titleJp: string;
+  studio: string;
+  producer: string;
+  score: string;
+  type: string;
+  status: string;
+  totalEpisode: string;
+  release: string;
+  duration: string;
+  genre: string;
+  synopsis: string;
   cover: string;
+  download: downloadAllResult[];
 }
 
 export interface ongoingResult {
@@ -13,12 +24,13 @@ export interface ongoingResult {
   episode: string;
   url: string;
   cover: string;
+  download: any;
 }
 
 export interface downloadEpsResult {
   title: string;
   resolution: resolution;
-  download: Array<{
+  dl: Array<{
     provider: string;
     extension: "MKV" | "MP4";
     url: string;

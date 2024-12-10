@@ -1,8 +1,17 @@
-const { infoAnime } = require("./dist");
-infoAnime("https://otakudesu.cloud/anime/nekopr-sub-indo/")
+const { error, log } = require("console");
+const {
+  infoAnime,
+  search,
+  ongoing,
+  downloadBatch,
+  downloadEpisode,
+  downloadAllEpisode,
+} = require("./dist");
+
+search("nekopara")
   .then((result) => {
-    console.log(result);
+    log(result[0].download);
   })
   .catch((err) => {
-    console.error(err);
+    error(err);
   });

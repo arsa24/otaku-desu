@@ -26,25 +26,26 @@ Fetches the list of ongoing anime.
   - `episode`: Current episode available.
   - `url`: URL to the anime page.
   - `cover`: Cover image URL.
+  - `download`: `downloadAllEpisode()`
 
 #### Example:
 
 ```typescript
 import { ongoing } from "otaku-desu";
 
-const result = await ongoing();
+const result = await ongoing("480p");
 console.log(result);
 ```
 
 ---
 
-### `search(search: string)`
+### `search(resolution?: resolution)`
 
 Searches for anime based on a keyword.
 
 #### Parameters:
 
-- `search`: A `string` representing the search query.
+- `resolution` (optional): A `resolution` type (`"360p" | "480p" | "720p"`) specifying the video resolution. Defaults to `"720p"`.
 
 #### Returns:
 
@@ -79,16 +80,19 @@ Downloads a specific anime episode.
 - `Promise<downloadEpsResult>`: The download details with the following properties:
   - `title`: Title of the episode.
   - `resolution`: Selected resolution.
-  - `download`: A list of download links with the following properties:
-    - `provider`: Name of the provider.
-    - `url`: Download link.
+  - `dl`: A list of download links with the following properties:
+    - `Series`: Download all episode from anime
+    - `Batch` : Download batch anime
 
 #### Example:
 
 ```typescript
 import { downloadEpisode } from "otaku-desu";
 
-const result = await downloadEpisode("https://example.com/episode1", "480p");
+const result = await downloadEpisode(
+  "https://otakudesu.cloud/episode/bata-episode-12-sub-indo/",
+  "480p"
+);
 console.log(result);
 ```
 
@@ -112,51 +116,42 @@ Downloads all episodes from a series page.
 ```typescript
 import { downloadAllEpisode } from "otaku-desu";
 
-const result = await downloadAllEpisode("https://example.com/series", "720p");
+const result = await downloadAllEpisode(
+  "https://otakudesu.cloud/anime/blue-archive-sub-indo/",
+  "720p"
+);
+console.log(result);
+```
+
+---
+
+### `downloadBatch(url: string, resolution?: resolution)`
+
+Download Batch from otaku batch link
+
+#### Parameters:
+
+- `url`: A `string` representing the URL of the batch page.
+- `resolution` (optional): A `resolution` type (`"360p" | "480p" | "720p"`) specifying the video resolution. Defaults to `"720p"`.
+
+#### Returns:
+
+- A list of download batch for anime.
+
+#### Example:
+
+```typescript
+import { downloadBatch } from "otaku-desu";
+
+const result = await downloadBatch(
+  "https://otakudesu.cloud/batch/bata-batch-sub-indo/"
+);
 console.log(result);
 ```
 
 ---
 
 ## Types
-
-### `ongoingResult`
-
-```typescript
-export interface ongoingResult {
-  number: number;
-  title: string;
-  day: string;
-  date: string;
-  episode: string;
-  url: string;
-  cover: string;
-}
-```
-
-### `searchResult`
-
-```typescript
-export interface searchResult {
-  number: number;
-  title: string;
-  url: string;
-  cover: string;
-}
-```
-
-### `downloadEpsResult`
-
-```typescript
-export interface downloadEpsResult {
-  title: string;
-  resolution: resolution;
-  download: Array<{
-    provider: string;
-    url: string;
-  }>;
-}
-```
 
 ### `resolution`
 

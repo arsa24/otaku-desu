@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.downloadAllEpisode = void 0;
 const fetch_1 = require("../utils/fetch");
+const downloadBatch_1 = require("./downloadBatch");
 const downloadEps_1 = require("./downloadEps");
 const downloadAllEpisode = (url_1, ...args_1) => __awaiter(void 0, [url_1, ...args_1], void 0, function* (url, resolution = "720p") {
     const $ = yield (0, fetch_1.fetch)(url);
@@ -23,7 +24,12 @@ const downloadAllEpisode = (url_1, ...args_1) => __awaiter(void 0, [url_1, ...ar
         if (link)
             episodeList.push(link);
     });
+    const batchLink = $("div.episodelist ul").eq(0).find("a").attr("href");
+    let dlBatch;
+    if (batchLink) {
+        dlBatch = yield (0, downloadBatch_1.downloadBatch)(batchLink, resolution);
+    }
     const result = yield Promise.all(episodeList.map((link) => (0, downloadEps_1.downloadEpisode)(link, resolution)));
-    return result;
+    return { series: result, batch: dlBatch };
 });
 exports.downloadAllEpisode = downloadAllEpisode;
