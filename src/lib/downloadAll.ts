@@ -1,11 +1,11 @@
 import { fetch } from "../utils/fetch";
-import { resolution } from "../utils/types";
+import { Resolution } from "../utils/types";
 import { downloadBatch } from "./downloadBatch";
 import { downloadEpisode } from "./downloadEps";
 
 export const downloadAllEpisode = async (
   url: string,
-  resolution: resolution = "720p"
+  resolution: Resolution = "720p"
 ) => {
   const $ = await fetch(url);
   let episodeList: string[] = [];

@@ -12,35 +12,37 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ongoing = void 0;
 const fetch_1 = require("../utils/fetch");
 const constant_1 = require("../utils/constant");
+const types_1 = require("../utils/types");
 const downloadAll_1 = require("./downloadAll");
+const infoAnime_1 = require("./infoAnime");
 const ongoing = (resolution) => __awaiter(void 0, void 0, void 0, function* () {
     const $ = yield (0, fetch_1.fetch)(constant_1.URL);
     const elements = $("div.rapi div.venz ul").eq(0).children("li");
     const promises = elements.toArray().map((element, i) => __awaiter(void 0, void 0, void 0, function* () {
-        const title = $(element).find("h2.jdlflm").text().trim();
         const day = $(element).find("div.epztipe").text().trim();
         const date = $(element).find("div.newnime").text().trim();
         const episode = $(element).find("div.epz").text().trim();
         const url = $(element).find("div.thumb").children("a").attr("href");
         const cover = $(element).find("div.thumbz").children("img").attr("src");
         let download = null;
+        let info = null;
         if (url) {
-            download = yield (0, downloadAll_1.downloadAllEpisode)(url, resolution);
+            download = (yield (0, downloadAll_1.downloadAllEpisode)(url, resolution)).series;
+            info = yield (0, infoAnime_1.infoAnime)(url);
         }
         if (url && cover && episode) {
             return {
                 number: i,
-                title,
-                day,
+                info,
                 date,
-                episode,
-                url,
-                cover,
                 download,
+                day,
+                newEpisode: episode,
             };
         }
+        return null;
     }));
-    let result = (yield Promise.all(promises)).filter(Boolean);
+    const result = (yield Promise.all(promises)).filter(types_1.filterNonNull);
     return result;
 });
 exports.ongoing = ongoing;

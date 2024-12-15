@@ -1,10 +1,10 @@
 import { fetch } from "../utils/fetch";
-import { infoAnimeResult } from "../utils/types";
+import { InfoAnimeResult } from "../utils/types";
 
-export const infoAnime = async (url: string): Promise<infoAnimeResult> => {
+export const infoAnime = async (url: string): Promise<InfoAnimeResult> => {
   let $ = await fetch(url);
   let sinopc: string[] = [];
-  let result: infoAnimeResult = {
+  let result: InfoAnimeResult = {
     title: "",
     titleJp: "",
     studio: "",

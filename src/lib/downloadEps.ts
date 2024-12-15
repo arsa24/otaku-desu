@@ -1,14 +1,14 @@
 import { fetch } from "../utils/fetch";
-import { downloadEpsResult, resolution } from "../utils/types";
+import { DownloadEpsResult, Resolution } from "../utils/types";
 
 export const downloadEpisode = async (
   url: string,
-  resolution: resolution = "720p"
-): Promise<downloadEpsResult> => {
+  resolution: Resolution = "720p"
+): Promise<DownloadEpsResult> => {
   const $ = await fetch(url);
   const title = $("h1.posttl").text();
 
-  let result: downloadEpsResult = {
+  let result: DownloadEpsResult = {
     title,
     resolution,
     dl: [],

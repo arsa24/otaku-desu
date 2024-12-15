@@ -1,4 +1,4 @@
-export interface searchResult {
+export interface SearchResult {
   number: number;
   title: string;
   titleJp: string;
@@ -13,23 +13,21 @@ export interface searchResult {
   genre: string;
   synopsis: string;
   cover: string;
-  download: downloadAllResult[];
+  download: DownloadAllResult[];
 }
 
-export interface ongoingResult {
+export interface OngoingResult {
   number: number;
-  title: string;
+  info: InfoAnimeResult | null;
   day: string;
+  newEpisode: string;
   date: string;
-  episode: string;
-  url: string;
-  cover: string;
-  download: any;
+  download: DownloadAllResult[] | null;
 }
 
-export interface downloadEpsResult {
+export interface DownloadEpsResult {
   title: string;
-  resolution: resolution;
+  resolution: Resolution;
   dl: Array<{
     provider: string;
     extension: "MKV" | "MP4";
@@ -37,7 +35,7 @@ export interface downloadEpsResult {
   }>;
 }
 
-export interface infoAnimeResult {
+export interface InfoAnimeResult {
   title: string;
   titleJp: string;
   studio: string;
@@ -53,8 +51,16 @@ export interface infoAnimeResult {
   cover: string;
 }
 
-export interface downloadAllResult extends downloadEpsResult {
+export interface DownloadAllResult {
   title: string;
+  dl: DownloadEpsResult["dl"];
 }
 
-export type resolution = "360p" | "480p" | "720p";
+export type Resolution = "360p" | "480p" | "720p";
+
+export interface DownloadAllEpisodeResult {
+  series: DownloadEpsResult[];
+  batch: DownloadAllResult | null;
+}
+
+export const filterNonNull = <T>(value: T | null | undefined): value is T => value != null;

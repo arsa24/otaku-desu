@@ -1,13 +1,13 @@
 import { URL } from "../utils/constant";
 import { fetch } from "../utils/fetch";
-import { resolution, searchResult } from "../utils/types";
+import { Resolution, SearchResult } from "../utils/types";
 import { downloadAllEpisode } from "./downloadAll";
 import { infoAnime } from "./infoAnime";
 
 export const search = async (
   search: string,
-  resolution?: resolution
-): Promise<searchResult[]> => {
+  resolution?: Resolution
+): Promise<SearchResult[]> => {
   const $ = await fetch(URL, {
     params: {
       s: search,
@@ -26,12 +26,12 @@ export const search = async (
         number: i,
         ...info,
         download,
-      } as unknown as searchResult;
+      } as unknown as SearchResult;
     }
     return undefined;
   });
   const result = (await Promise.all(promises)).filter(
     Boolean
-  ) as searchResult[];
+  ) as SearchResult[];
   return result;
 };
