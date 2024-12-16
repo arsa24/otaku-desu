@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.infoAnime = exports.downloadBatch = exports.downloadAllEpisode = exports.downloadEpisode = exports.ongoing = exports.search = void 0;
+exports.newBatchAnime = exports.infoAnime = exports.downloadBatch = exports.downloadAllEpisode = exports.downloadEpisode = exports.ongoing = exports.search = void 0;
 var ongoing_1 = require("./ongoing");
 Object.defineProperty(exports, "ongoing", { enumerable: true, get: function () { return ongoing_1.ongoing; } });
 var search_1 = require("./search");
@@ -13,3 +13,5 @@ var downloadBatch_1 = require("./downloadBatch");
 Object.defineProperty(exports, "downloadBatch", { enumerable: true, get: function () { return downloadBatch_1.downloadBatch; } });
 var infoAnime_1 = require("./infoAnime");
 Object.defineProperty(exports, "infoAnime", { enumerable: true, get: function () { return infoAnime_1.infoAnime; } });
+var newBatchAnime_1 = require("./newBatchAnime");
+Object.defineProperty(exports, "newBatchAnime", { enumerable: true, get: function () { return newBatchAnime_1.newBatchAnime; } });

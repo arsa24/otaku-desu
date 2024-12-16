@@ -1,3 +1,4 @@
+import { NewBatchAnimeResult } from "otaku-desu";
 import {
     SearchResult,
     OngoingResult,
@@ -14,6 +15,7 @@ export declare function downloadEpisode(animeId: string, episode: number): Promi
 export declare function ongoing(): Promise<OngoingResult[]>;
 export declare function search(query: string): Promise<SearchResult[]>;
 export declare function infoAnime(animeId: string): Promise<InfoAnimeResult>;
+export declare function newBatchAnime(): Promise<NewBatchAnimeResult[]>
 
 export {
     SearchResult,
@@ -23,4 +25,5 @@ export {
     DownloadAllResult,
     DownloadAllEpisodeResult,
     Resolution,
+    NewBatchAnimeResult
 };

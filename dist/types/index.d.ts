@@ -1,1 +1,1 @@
-export { downloadAllEpisode, downloadBatch, downloadEpisode, ongoing, search, infoAnime } from "./lib";
+export { downloadAllEpisode, downloadBatch, downloadEpisode, ongoing, search, infoAnime, newBatchAnime } from "./lib";

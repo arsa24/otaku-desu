@@ -15,6 +15,15 @@ export interface SearchResult {
     cover: string;
     download: DownloadAllResult[];
 }
+export interface NewBatchAnimeResult {
+    number: number;
+    title: string;
+    url: string;
+    totalEpisode: string;
+    score: string;
+    cover: string;
+    download: DownloadAllResult;
+}
 export interface OngoingResult {
     number: number;
     info: InfoAnimeResult | null;

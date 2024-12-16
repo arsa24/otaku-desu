@@ -4,6 +4,7 @@ import { downloadEpisode } from "./downloadEps";
 import { downloadAllEpisode } from "./downloadAll";
 import { downloadBatch } from "./downloadBatch";
 import { infoAnime } from "./infoAnime";
+import { newBatchAnime } from "./newBatchAnime";
 
 export {
   search,
@@ -12,4 +13,5 @@ export {
   downloadAllEpisode,
   downloadBatch,
   infoAnime,
+  newBatchAnime
 };
